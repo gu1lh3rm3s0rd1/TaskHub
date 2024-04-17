@@ -13,6 +13,7 @@
     "body-parser": "^1.20.2",
     "express": "^4.19.2",
     "express-validator": "^7.0.1",
-    "mongoose": "^8.3.1"
+    "mongoose": "^8.3.1",
+    "react-calendar": "^4.8.0"
   }
 }
