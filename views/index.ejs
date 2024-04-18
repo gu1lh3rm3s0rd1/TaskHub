@@ -4,14 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciador de Tarefas</title>
-    <link href="css/style.css" rel="stylesheet">
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.css' rel='stylesheet' />
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.css' rel='stylesheet' />
+    <title>
+        <%= title %>
+    </title>
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <div id="calendar"></div>
+    <h1>Bem-vindo ao <%= title %>
+    </h1>
+    <div id="calendar" class="wraper">
+        <div class="days-week">
+            <span>Domingo</span>
+            <span>Segunda</span>
+            <span>Treça</span>
+            <span>Quarta</span>
+            <span>Quinta</span>
+            <span>Sexta</span>
+            <span>Sabado</span>
+        </div>
+
+        <div class="number-days">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
 
     <!-- Modal para adicionar/editar tarefas -->
     <div id="taskFormModal" class="modal">
@@ -33,8 +50,14 @@
         </form>
     </div>
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.js'></script>
+    <script>
+        let el = document.querySelector('.number-days');
+
+        for (let i = 1; i <= 31; i++) {
+            el.innerHTML += '<span>' + i + '</span>';
+        }        
+    </script>
+
     <script src="js/calendar.js"></script>
 </body>
 
