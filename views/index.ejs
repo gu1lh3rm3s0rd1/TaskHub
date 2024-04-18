@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Tarefas</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.css' rel='stylesheet' />
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.css' rel='stylesheet' />
+</head>
+
+<body>
+    <div id="calendar"></div>
+
+    <!-- Modal para adicionar/editar tarefas -->
+    <div id="taskFormModal" class="modal">
+        <form id="taskForm">
+            <input type="hidden" id="taskId">
+            <div>
+                <label for="title">Título:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div>
+                <label for="description">Descrição:</label>
+                <textarea id="description" name="description"></textarea>
+            </div>
+            <div>
+                <label for="date">Data:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <button type="submit">Salvar Tarefa</button>
+        </form>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.min.js'></script>
+    <script src="js/calendar.js"></script>
+</body>
+
+</html>

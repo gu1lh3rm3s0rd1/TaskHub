@@ -1,6 +1,6 @@
 TaskHub
 
-TaskHub é uma aplicação desenvolvida com Node.js e React para criar um gerenciador de tarefas.
+TaskHub é uma aplicação desenvolvida com Node.js e EJS para criar um gerenciador de tarefas.
 Funcionalidades
 
     Criação de Tarefas: Adicione novas tarefas à sua lista com facilidade.
