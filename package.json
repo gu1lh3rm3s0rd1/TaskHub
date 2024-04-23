@@ -18,6 +18,8 @@
     "mongoose": "^8.3.2",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
-    "react-calendar": "^4.8.0"
+    "react-calendar": "^4.8.0",
+    "uuid": "^9.0.1",
+    "type": "module"
   }
 }

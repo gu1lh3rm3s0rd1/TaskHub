@@ -1,80 +1,50 @@
-// const express = require('express');
-// const helmet = require('helmet');
-// const path = require('path'); // Pode ser necessário para definir o caminho das views
-// const tarefasRouter = require('./routes/tarefas');
-// const authRoutes = require('./routes/authRoutes');
-
-// const app = express();
-// app.use(helmet({
-//   contentSecurityPolicy: {
-//     directives: {
-//       defaultSrc: ["'self'"],
-//       scriptSrc: ["'self'", "https://cdnjs.cloudflare.com/ajax/libs/"],
-//       styleSrc: ["'self'", "https://cdn.jsdelivr.net/npm/@fullcalendar/"]
-//     }
-//   }
-// }));
-// app.use(express.static('public'));
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-
-// // Configuração do EJS
-// app.set('view engine', 'ejs');
-
-// // Rotas
-// app.use('/tarefas', tarefasRouter);
-// app.use('/auth', authRoutes);
-
-// app.get('/', (req, res) => {
-//     res.render('index'); // Certifique-se de que 'index.ejs' está corretamente configurado no diretório 'views/'
-// });
-
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => {
-//   console.log(`Servidor rodando na porta ${PORT}`);
-// });
-
-
-
-
-
+// Importando módulos e configurando o servidor
 const express = require('express');
-const helmet = require('helmet');
+const bodyParser = require('body-parser');
 const tarefasRouter = require('./routes/tarefas');
 const authRoutes = require('./routes/authRoutes');
+const calendarRoutes = require('./routes/calendario');
+const diaRoutes = require('./routes/dias');
+require('./db'); // Isso assegura que o banco de dados esteja conectado
 
 const app = express();
 
-// Configuração do Helmet com CSP apropriado para FullCalendar e outros recursos estáticos
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],  // Permite carregamento de fontes do mesmo domínio
-      scriptSrc: ["'self'", "https://cdnjs.cloudflare.com/ajax/libs/"],  // Permite scripts do domínio e do CDN do FullCalendar
-      styleSrc: ["'self'", "https://cdn.jsdelivr.net/npm/@fullcalendar/"],  // Permite estilos do domínio e do CDN específico para FullCalendar
-      imgSrc: ["'self'", "data:"], // Permite imagens do mesmo domínio e data URLs
-      connectSrc: ["'self'"], // Permite conexões WebSocket e AJAX para o mesmo domínio
-      frameSrc: ["'self'"] // Permite iframes do mesmo domínio, se necessário
-    }
-  }
-}));
+// Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+
+
+// Configuração do EJS como engine de template
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
+
 
 // Servindo arquivos estáticos da pasta public
 app.use(express.static('public'));
 
-// Middlewares para parse de JSON e urlencoded form data
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-// Configuração do EJS
-app.set('view engine', 'ejs');
 
 // Rotas
 app.use('/tarefas', tarefasRouter);
 app.use('/auth', authRoutes);
+app.use('/api/calendar', calendarRoutes);
+app.use('/api/dias', diaRoutes);
 
 app.get('/', (req, res) => {
-  res.render('index', { title: 'Gerenciador de Tarefas' });
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth(); // Mês atual (0-11)
+
+  // Calcula o número de dias no mês
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  // Gerar array de dias [1, 2, ..., daysInMonth]
+  const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+  res.render('teste2', { year, month, days, title: 'Calendário' });
 });
 
 const PORT = process.env.PORT || 3000;

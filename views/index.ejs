@@ -3,62 +3,358 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         <%= title %>
     </title>
     <link href="/css/style.css" rel="stylesheet">
-</head>
+    <link href="/css/calendar.css" rel="stylesheet">
 
-<body>
-    <h1>Bem-vindo ao <%= title %>
-    </h1>
-    <div id="calendar" class="wraper">
-        <div class="days-week">
-            <span>Domingo</span>
-            <span>Segunda</span>
-            <span>Treça</span>
-            <span>Quarta</span>
-            <span>Quinta</span>
-            <span>Sexta</span>
-            <span>Sabado</span>
+<body style="height: 100vh !important;">
+
+    <div style="display: grid; margin-top: 1rem;">
+        <!-- <div style="padding-bottom: 10px; padding-left: 96px; padding-right: 96px; min-width: calc(100% - 192px);"
+            class="notion-calendar-view">
+            <div style="position: relative; padding-left: 1px;" data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                class="notion-selectable notion-collection_view-block">
+                <div style="position: absolute; left: 0px; right: 0px; background: rgb(25, 25, 25); z-index: 85;">
+                    <div style="display: flex; height: 42px; align-items: center; margin-bottom: 2px;">
+                        <div
+                            style="font-weight: 600; margin-left: 8px; margin-right: 8px; line-height: 1; font-size: 14px;">
+                            julho de 2024</div>
+
+                        <div
+                            style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+                            dom.</div>
+                        <div
+                            style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+                            seg.</div>
+                        <div
+                            style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+                            ter.</div>
+                        <div
+                            style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+                            qua.</div>
+                        <div
+                            style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+                            qui.</div>
+                        <div
+                            style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+                            sex.</div>
+                        <div
+                            style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+                            sáb.</div>
+                    </div>
+                </div>
+                <div style="height: 66px;"></div>
+                <div style="box-shadow: rgb(47, 47, 47) -1px 0px 0px; margin-top: 1px; overflow: hidden;">
+                    <div style="position: relative; display: flex; height: 124px;">
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default; background: rgb(32, 32, 32);"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out; color: rgba(255, 255, 255, 0.283);"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">30</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">1
+                                de jul. </div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">2</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">3</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">4</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">5</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default; background: rgb(32, 32, 32);"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">6</div>
+                        </div>
+                    </div>
+                    <div style="position: relative; display: flex; height: 124px;">
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default; background: rgb(32, 32, 32);"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">7</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">8</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">9</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">10</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">11</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">12</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default; background: rgb(32, 32, 32);"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">13</div>
+                        </div>
+                    </div>
+                    <div style="position: relative; display: flex; height: 124px;">
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default; background: rgb(32, 32, 32);"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">14</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">15</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">16</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">17</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">18</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">19</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default; background: rgb(32, 32, 32);"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">20</div>
+                        </div>
+                    </div>
+                    <div style="position: relative; display: flex; height: 124px;">
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default; background: rgb(32, 32, 32);"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">21</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">22</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">23</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">24</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">25</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">26</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default; background: rgb(32, 32, 32);"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">27</div>
+                        </div>
+                    </div>
+                    <div style="position: relative; display: flex; height: 124px;">
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default; background: rgb(32, 32, 32);"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">28</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">29</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">30</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out;"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">31</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out; color: rgba(255, 255, 255, 0.283);"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">1
+                                de ago. </div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default;"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out; color: rgba(255, 255, 255, 0.283);"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">2</div>
+                        </div>
+                        <div style="position: relative; flex: 1 0 0px; border-right: 1px solid rgb(47, 47, 47); border-bottom: 1px solid rgb(47, 47, 47); cursor: default; background: rgb(32, 32, 32);"
+                            data-block-id="6474bcc1-2588-4f2b-8a39-8a0079dc29b1"
+                            class="notion-selectable notion-collection_view-block">
+                            <div style="position: absolute; font-size: 14px; top: 4px; right: 10px; height: 24px; line-height: 24px; text-align: right; transition: color 100ms ease-out; color: rgba(255, 255, 255, 0.283);"
+                                class="notion-calendar-view-day notion-shimmer-calendar-transition">3</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="notion-selectable-halo"
+                    style="position: absolute; pointer-events: none; inset: 0px; background: rgba(35, 131, 226, 0.14); z-index: 81; border-radius: 4px; opacity: 1; transition-property: opacity; transition-duration: 270ms; transition-timing-function: ease;">
+                </div>
+            </div>
+        </div> -->
+
+        <div style="padding-bottom: 10px; padding-left: 96px; padding-right: 96px; min-width: calc(100% - 192px);"
+            class="notion-calendar-view">
+            <div style="position: relative; padding-left: 1px; padding-right: 1px;">
+                <div style="position: absolute; left: 0px; right: 0px; background: rgb(25, 25, 25); z-index: 85;">
+                    <div style="display: flex; height: 42px; align-items: center; margin-bottom: 2px;">
+                        <!-- Cabeçalho do Calendário -->
+                        <div
+                            style="font-weight: 600; margin-left: 8px; margin-right: 8px; line-height: 1; font-size: 14px;">
+                            <%= month %> de <%= year %>
+                        </div>
+                        <div
+                            style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+                            dom.
+                        </div>
+                        <div
+                            style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+                            seg.
+                        </div>
+                        <div
+                            style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+                            ter.
+                        </div>
+                        <div
+                            style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+                            qua.
+                        </div>
+                        <div
+                            style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+                            qui.
+                        </div>
+                        <div
+                            style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+                            sex.
+                        </div>
+                        <div
+                            style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+                            sáb.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="height: 66px;"></div>
+
+                <!-- Dias do Mês -->
+                <div>
+                    <% days.forEach(day=> { %>
+                        <div
+                            style="display: inline-block; width: calc(100% / 7); border: 1px solid #ccc; padding: 10px; box-sizing: border-box;">
+                            <%= day %>
+                        </div>
+                        <% }) %>
+                </div>
+            </div>
         </div>
 
-        <div class="number-days">
-            <span></span>
-            <span></span>
+
+        <div id="taskFormModal" class="modal">
+            <form id="taskForm">
+                <input type="hidden" id="taskId">
+                <div>
+                    <label for="title">Título:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div>
+                    <label for="description">Descrição:</label>
+                    <textarea id="description" name="description"></textarea>
+                </div>
+                <div>
+                    <label for="date">Data:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <button type="submit">Salvar Tarefa</button>
+            </form>
         </div>
     </div>
 
-    <!-- Modal para adicionar/editar tarefas -->
-    <div id="taskFormModal" class="modal">
-        <form id="taskForm">
-            <input type="hidden" id="taskId">
-            <div>
-                <label for="title">Título:</label>
-                <input type="text" id="title" name="title" required>
-            </div>
-            <div>
-                <label for="description">Descrição:</label>
-                <textarea id="description" name="description"></textarea>
-            </div>
-            <div>
-                <label for="date">Data:</label>
-                <input type="date" id="date" name="date" required>
-            </div>
-            <button type="submit">Salvar Tarefa</button>
-        </form>
-    </div>
-
-    <script>
-        let el = document.querySelector('.number-days');
-
-        for (let i = 1; i <= 31; i++) {
-            el.innerHTML += '<span>' + i + '</span>';
-        }        
-    </script>
-
-    <script src="js/calendar.js"></script>
+    <script type="text/javascript" src="/js/calendar.js"></script>
 </body>
 
 </html>

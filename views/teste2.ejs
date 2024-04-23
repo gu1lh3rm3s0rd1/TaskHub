@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário</title>
+</head>
+
+<body>
+    <h1>Dados do Calendário</h1>
+    <div id="calendar"></div>
+
+    <script>
+        fetch('/api/calendar/data')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('calendar').innerText = JSON.stringify(data, null, 2);
+            })
+            .catch(error => console.error('Erro ao buscar dados do calendário:', error));
+    </script>
+
+    <br><br><br>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <br><br><br>
+
+    <h1>Eventos</h1>
+    <ul id="eventos"></ul>
+
+    <script>
+        fetch('/api/dias')
+            .then(response => response.json())
+            .then(dias => {
+                // Aqui você pode fazer o que quiser com os dados dos dias, como exibi-los na página
+                console.log(dias);
+            })
+            .catch(error => console.error('Erro ao buscar dados dos dias:', error));
+
+    </script>
+
+</body>
+
+</html>
