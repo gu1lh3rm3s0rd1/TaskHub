@@ -2,45 +2,232 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendário</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendário</title>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
-    <h1>Dados do Calendário</h1>
-    <div id="calendar"></div>
+  <h1>Calendário</h1>
 
-    <script>
-        fetch('/api/calendar/data')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('calendar').innerText = JSON.stringify(data, null, 2);
-            })
-            .catch(error => console.error('Erro ao buscar dados do calendário:', error));
-    </script>
+  <div style="position: absolute; left: 0px; right: 0px; background: rgb(25, 25, 25); z-index: 85;">
+    <div style="display: flex; height: 42px; align-items: center; margin-bottom: 2px;">
+      <!-- Cabeçalho do Calendário -->
+      <div style="font-weight: 600; margin-left: 8px; margin-right: 8px; line-height: 1; font-size: 14px;">
+      </div>
+      <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+        dom.
+      </div>
+      <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+        seg.
+      </div>
+      <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+        ter.
+      </div>
+      <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+        qua.
+      </div>
+      <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+        qui.
+      </div>
+      <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+        sex.
+      </div>
+      <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">
+        sáb.
+      </div>
+    </div>
+  </div>
 
-    <br><br><br>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <br><br><br>
+  <div style="height: 66px;"></div>
 
-    <h1>Dias</h1>
-    <ul>
-        <% dias.forEach(dia=> { %>
-            <li>
-                <strong>Data:</strong>
-                <%= dia.data.toDateString() %><br>
-                    <strong>Dia da Semana:</strong>
-                    <%= dia.diaDaSemana %><br>
-                        <strong>Feriado:</strong>
-                        <%= dia.feriado ? 'Sim' : 'Não' %>
-            </li>
-            <% }); %>
-    </ul>
+  <% semanas.forEach(semana=> { %>
+  <div>
+    <% semana.forEach(dia=> { %>
+    <div class="dia-calendario" data-date="<%= dia.data.toISOString().slice(0, 10) %>" style="display: inline-block; width: calc(100% / 8); border: 1px solid #ccc; padding: 10px; box-sizing: border-box; cursor: pointer;">
+      <%= new Date(dia.data).getDate() %> - <%= dia.diaDaSemana %>
+    </div>
+    <% }); %>
+    <% for (let i=semana.length; i < 7; i++) { %>
+    <div style="display: inline-block; width: calc(100% / 8); border: 1px solid #ccc; padding: 10px; box-sizing: border-box;">
+    </div>
+    <% } %>
+  </div>
+  <% }); %>
+
+  <br>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">Nova Tarefa</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/tarefas" method="POST">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" required><br>
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" rows="4" cols="50" required></textarea><br>
+            <label for="data">Data:</label>
+            <input type="date" id="data" name="data" required><br>
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+              <option value="pendente">Pendente</option>
+              <option value="concluido">Concluído</option>
+            </select><br>
+            <button type="submit">Salvar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.dia-calendario').forEach(cell => {
+      cell.addEventListener('click', function() {
+        const selectedDate = this.getAttribute('data-date');
+        document.getElementById('data').value = selectedDate; // Fill the date field in the form
+
+        // Bootstrap modal show method
+        $('#myModal').modal('show');
+      });
+    });
+  </script>
+
+  <!-- Div para exibir as tarefas -->
+  <div id="listaTarefas" class="mt-4"></div>
+
+  <!-- Modal para Edição de Tarefas -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Editar Tarefa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editForm" style="display: none;" method="POST">
+            <input type="hidden" id="editId" name="_id">
+            <label for="editTitulo">Título:</label>
+            <input type="text" id="editTitulo" name="titulo" required><br>
+            <label for="editDescricao">Descrição:</label>
+            <textarea id="editDescricao" name="descricao" rows="4" cols="50" required></textarea><br>
+            <label for="editData">Data:</label>
+            <input type="date" id="editData" name="data" required><br>
+            <label for="editStatus">Status:</label>
+            <select id="editStatus" name="status">
+              <option value="pendente">Pendente</option>
+              <option value="concluido">Concluído</option>
+            </select><br>
+            <button type="submit">Salvar Alterações</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para Deleção de Tarefas -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Confirmar Deleção</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="deleteForm" style="display: none;" method="POST">
+            <input type="hidden" id="deleteId" name="_id">
+            <button type="submit">Confirmar Deleção</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function carregarTarefas() {
+      fetch('/tarefas')
+        .then(response => response.json())
+        .then(data => {
+          const listaTarefas = document.getElementById('listaTarefas');
+          listaTarefas.innerHTML = '';
+          const ul = document.createElement('ul');
+          ul.classList.add('list-group');
+
+          data.forEach(tarefa => {
+            const li = document.createElement('li');
+            li.classList.add('list-group-item');
+            li.innerHTML = `
+            <h5 class="mb-1">${tarefa.titulo}</h5>
+            <p class="mb-1">${tarefa.descricao}</p>
+            <small>Data: ${new Date(tarefa.data).toLocaleDateString()}</small><br>
+            <small>Status: ${tarefa.status}</small>
+            <button onclick="editarTarefa('${tarefa._id.$oid}')" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal">Editar</button>
+            <button onclick="deletarTarefa('${tarefa._id.$oid}')" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal">Deletar</button>
+          `;
+            ul.appendChild(li);
+          });
+
+          listaTarefas.appendChild(ul);
+        })
+        .catch(error => console.error('Erro ao carregar tarefas:', error));
+    }
+
+    document.getElementById('editForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const id = document.getElementById('editId').value;
+      const titulo = document.getElementById('editTitulo').value;
+      const descricao = document.getElementById('editDescricao').value;
+      const data = document.getElementById('editData').value;
+      const status = document.getElementById('editStatus').value;
+
+      fetch(`/tarefas/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          titulo,
+          descricao,
+          data,
+          status
+        })
+      }).then(() => {
+        carregarTarefas();
+        var editModal = new bootstrap.Modal(document.getElementById('editModal'));
+        editModal.hide();
+      });
+    });
+
+    function deletarTarefa(id) {
+      document.getElementById('deleteId').value = id;
+    }
+
+    document.getElementById('deleteForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const id = document.getElementById('deleteId').value;
+      fetch(`/tarefas/${id}`, {
+        method: 'DELETE'
+      }).then(() => {
+        carregarTarefas();
+        var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        deleteModal.hide();
+      });
+    });
+
+    window.onload = carregarTarefas;
+  </script>
 
 </body>
 

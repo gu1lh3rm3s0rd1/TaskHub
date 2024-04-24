@@ -14,26 +14,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
-
 // Configuração do EJS como engine de template
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-
-
 // Servindo arquivos estáticos da pasta public
 app.use(express.static('public'));
-
-
 
 // Rotas
 app.use('/tarefas', tarefasRouter);
 app.use('/api/calendar', calendarRoutes);
 app.use('/dias', diasRouter);
-
-
-
 app.get('/', (req, res) => {
   const date = new Date();
   const year = date.getFullYear();
