@@ -2,9 +2,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const tarefasRouter = require('./routes/tarefas');
-const authRoutes = require('./routes/authRoutes');
 const calendarRoutes = require('./routes/calendario');
-const diaRoutes = require('./routes/dias');
+const diasRouter = require('./routes/dias');
+
 require('./db'); // Isso assegura que o banco de dados esteja conectado
 
 const app = express();
@@ -29,9 +29,10 @@ app.use(express.static('public'));
 
 // Rotas
 app.use('/tarefas', tarefasRouter);
-app.use('/auth', authRoutes);
 app.use('/api/calendar', calendarRoutes);
-app.use('/api/dias', diaRoutes);
+app.use('/dias', diasRouter);
+
+
 
 app.get('/', (req, res) => {
   const date = new Date();
@@ -48,6 +49,7 @@ app.get('/', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });

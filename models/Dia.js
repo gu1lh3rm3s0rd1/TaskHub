@@ -1,13 +1,15 @@
+// models/Dia.js
 const mongoose = require('mongoose');
 
-const diaSchema = new mongoose.Schema({
-    data: Date,
-    diaDaSemana: Number,
-    feriado: Boolean,
-    eventos: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Evento' // Assumindo que você tem um modelo Evento
-    }]
+const Schema = mongoose.Schema;
+const diaSchema = new Schema({
+  data: Date,
+  diaDaSemana: Number,
+  feriado: Boolean,
+  eventos: Array
 });
 
-module.exports = mongoose.model('Dia', diaSchema);
+const Dia = mongoose.model('Dia', diaSchema);
+
+module.exports = Dia;
+

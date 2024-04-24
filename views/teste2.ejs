@@ -28,19 +28,19 @@
     <hr>
     <br><br><br>
 
-    <h1>Eventos</h1>
-    <ul id="eventos"></ul>
-
-    <script>
-        fetch('/api/dias')
-            .then(response => response.json())
-            .then(dias => {
-                // Aqui você pode fazer o que quiser com os dados dos dias, como exibi-los na página
-                console.log(dias);
-            })
-            .catch(error => console.error('Erro ao buscar dados dos dias:', error));
-
-    </script>
+    <h1>Dias</h1>
+    <ul>
+        <% dias.forEach(dia=> { %>
+            <li>
+                <strong>Data:</strong>
+                <%= dia.data.toDateString() %><br>
+                    <strong>Dia da Semana:</strong>
+                    <%= dia.diaDaSemana %><br>
+                        <strong>Feriado:</strong>
+                        <%= dia.feriado ? 'Sim' : 'Não' %>
+            </li>
+            <% }); %>
+    </ul>
 
 </body>
 
