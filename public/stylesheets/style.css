@@ -1,0 +1,118 @@
+/* body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+} */
+
+html {
+  --body-color: #fffcff;
+
+  --header-color: #d36c6c;
+
+  --header-button: #92a1d1;
+
+  --color-weekdays: #247ba0;
+
+  --box-shadow: #cbd4c2;
+
+  --hover: #e8faed;
+
+  --current-day: #e8f4fa;
+
+  --color-day: white;
+}
+
+body {
+  /* display: flex; */
+  padding: 50px;
+  /* justify-content: center; */
+  background-color: var(--body-color);
+}
+
+.centraliza {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  width: 75px;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px gray;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}
+
+#header {
+  padding: 10px;
+  color: var(--header-color);
+  font-size: 26px;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+
+#header button {
+  background-color: var(--header-button);
+}
+
+#container {
+  width: 770px;
+}
+
+#weekdays {
+  width: 100%;
+  display: flex;
+  color: var(--color-weekdays);
+}
+
+#weekdays div {
+  width: 100px;
+  padding: 10px;
+}
+
+#calendar {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.day {
+  width: 100px;
+  padding: 10px;
+  height: 100px;
+  cursor: pointer;
+  box-sizing: border-box;
+  background-color: var(--color-day);
+  margin: 5px;
+  box-shadow: 0px 0px 3px var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 15%;
+}
+
+.day:hover {
+  background-color: var(--hover);
+}
+
+.day + #currentDay {
+  background-color: var(--current-day);
+}
+
+.padding {
+  cursor: default !important;
+  background-color: var(--body-color) !important;
+  box-shadow: none !important;
+}
+
+.scrollable-div {
+  max-height: 750px; /* Defina a altura máxima */
+  overflow-y: auto; /* Adicione rolagem vertical */
+}
