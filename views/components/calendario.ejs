@@ -1,0 +1,47 @@
+<div id="container">
+  <div id="header">
+    <div id="container">
+      <div class="pagination" style="display: flex; height: 40px; align-items: center;">
+        <div style="font-weight: 600; margin-left: 8px; margin-right: 8px; line-height: 1; font-size: 14px;">
+          <div id="monthDisplay"></div>
+        </div>
+
+        <div style="flex-grow: 1;"></div>
+
+        <div class="btn btn-primary" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 4px; height: 24px; width: 24px; padding: 0px;" aria-label="Mês anterior">
+          <button id="backButton">
+            <svg role="graphics-symbol" viewBox="0 0 16 16" style="width: 14px; height: 14px; display: block; fill: rgba(255, 255, 255, 0.445); flex-shrink: 0;" class="chevronLeft">
+              <path d="M3.61816 8.06445C3.61816 8.29688 3.70703 8.49512 3.8916 8.67285L9.22363 13.8887C9.36719 14.0391 9.55859 14.1143 9.77734 14.1143C10.2217 14.1143 10.5703 13.7725 10.5703 13.3213C10.5703 13.1025 10.4814 12.9043 10.3311 12.7539L5.52539 8.06445L10.3311 3.375C10.4814 3.21777 10.5703 3.01953 10.5703 2.80078C10.5703 2.35645 10.2217 2.01465 9.77734 2.01465C9.55859 2.01465 9.36719 2.08984 9.22363 2.24023L3.8916 7.45605C3.70703 7.63379 3.625 7.83203 3.61816 8.06445Z">
+              </path>
+            </svg>
+          </button>
+        </div>
+
+        <div role="button" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; display: inline-flex; align-items: center; flex-shrink: 0; white-space: nowrap; height: 24px; border-radius: 4px; font-size: 14px; line-height: 1.2; min-width: 0px; padding-left: 6px; padding-right: 6px; color: rgba(255, 255, 255, 0.81);">
+          <div id="monthDisplay"></div>
+        </div>
+
+        <div class="btn btn-primary" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 4px; height: 24px; width: 24px; padding: 0px;" aria-label="Próximo mês">
+          <button id="nextButton">
+            <svg role="graphics-symbol" viewBox="0 0 16 16" style="width: 14px; height: 14px; display: block; fill: rgba(255, 255, 255, 0.445); flex-shrink: 0;" class="chevronRight">
+              <path d="M12.375 8.06445C12.375 7.83203 12.2861 7.63379 12.1084 7.45605L6.77637 2.24023C6.62598 2.08984 6.44141 2.01465 6.22266 2.01465C5.77832 2.01465 5.42285 2.35645 5.42285 2.80078C5.42285 3.01953 5.51172 3.21777 5.66211 3.375L10.4746 8.06445L5.66211 12.7539C5.51855 12.9043 5.42285 13.1025 5.42285 13.3213C5.42285 13.7725 5.77832 14.1143 6.22266 14.1143C6.44141 14.1143 6.62598 14.0391 6.77637 13.8887L12.1084 8.67285C12.293 8.49512 12.375 8.29688 12.375 8.06445Z">
+              </path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="weekdays" style="display: flex; align-items: center;">
+        <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">Domingo</div>
+        <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">Segunda-feira</div>
+        <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">Terça-feira</div>
+        <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">Quarta-feira</div>
+        <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">Quinta-feira</div>
+        <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">Sexta-feira</div>
+        <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: rgba(255, 255, 255, 0.283);">Sábado</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="calendar"></div>
+</div>

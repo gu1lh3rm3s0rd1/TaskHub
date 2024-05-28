@@ -1,0 +1,67 @@
+<div id="containerTarefas" class="container w-50 card text-bg-light scrollable-div bg-dark">
+  <div id="divFiltro" class="d-flex justify-content-end">
+    <button data-sort="data" class="btn btn-dark">
+      <!-- Data DESC -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+        <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z" />
+        <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+      </svg>
+    </button>
+    <button data-sort="nomeAZ" class="btn btn-dark">
+      <!-- nome ASC -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-alpha-down" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371zm1.57-.785L11 2.687h-.047l-.652 2.157z" />
+        <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293z" />
+      </svg>
+    </button>
+    <button data-sort="nomeZA" class="btn btn-dark">
+      <!-- nome DESC -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-alpha-up-alt" viewBox="0 0 16 16">
+        <path d="M12.96 7H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645z" />
+        <path fill-rule="evenodd" d="M10.082 12.629 9.664 14H8.598l1.789-5.332h1.234L13.402 14h-1.12l-.419-1.371zm1.57-.785L11 9.688h-.047l-.652 2.156z" />
+        <path d="M4.5 13.5a.5.5 0 0 1-1 0V3.707L2.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.5.5 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L4.5 3.707z" />
+      </svg>
+    </button>
+    <div class="btn-group">
+      <button type="button" class="btn btn-dark  dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+          <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
+        </svg>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Pendente</a></li>
+        <li><a class="dropdown-item" href="#">Concluido</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="divtarefas">
+    <% tarefas.forEach(function(tarefa) { %>
+    <div class="card mb-1">
+      <div class="card-header fs-5"><%= tarefa.titulo %></div>
+      <div class="card-body">
+        <p class="card-text"><%= tarefa.descricao %></p>
+        <small class="card-text"><%= tarefa.data %></small><br>
+        <% if (tarefa.status === 'concluido') { %>
+        <small class="card-text badge text-bg-success"><%= tarefa.status %></small><br>
+        <% } else { %>
+        <small class="card-text badge text-bg-danger"><%= tarefa.status %></small><br>
+        <% } %>
+        <button class="btn btn-primary btn-sm edit-btn mt-2" data-bs-toggle="modal" data-bs-target="#editModal" data-id="<%= tarefa._id %>" data-titulo="<%= tarefa.titulo %>" data-descricao="<%= tarefa.descricao %>" data-data="<%= tarefa.data %>" data-status="<%= tarefa.status %>">
+          <!-- Editar -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="22" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+          </svg>
+        </button>
+        <button class="btn btn-danger btn-sm delete-btn mt-2" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<%= tarefa._id %>">
+          <!-- Deletar -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="22" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <% }); %>
+  </div>
+</div>

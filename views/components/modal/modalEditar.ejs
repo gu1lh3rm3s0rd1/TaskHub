@@ -1,0 +1,38 @@
+  <!-- Modal para Edição de Tarefas -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form action="edit" id="editForm" method="post">
+          <input type="hidden" id="editId" name="id">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">Editar Tarefa</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-2">
+              <label for="editTitulo" class="col-form-label">Título:</label>
+              <input type="text" id="editTitulo" name="titulo" class="form-control" required>
+            </div>
+            <div class="mb-2">
+              <label for="editDescricao" class="col-form-label">Descrição:</label>
+              <textarea id="editDescricao" name="descricao" class="form-control" rows="4" cols="50" required></textarea>
+            </div>
+            <div class="mb-2">
+              <label for="editData" class="col-form-label">Data:</label>
+              <input type="date" id="editData" name="data" class="form-control" required>
+            </div>
+            <div class="mb-2">
+              <label for="editStatus" class="col-form-label">Status:</label>
+              <select id="editStatus" name="status" class="form-control">
+                <option value="pendente">Pendente</option>
+                <option value="concluido">Concluído</option>
+              </select><br>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" value="editar">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
