@@ -6,7 +6,7 @@ let events = localStorage.getItem("events")
   : [];
 
 // calendario
-const calendar = document.getElementById("calendar"); // div calendar:
+const calendar = document.getElementById("calendar");
 const weekdays = [
   "domingo",
   "segunda-feira",
@@ -85,19 +85,16 @@ function load() {
   }
 }
 
-// Função para exibir o modal ao clicar na classe .day
+// funcao para exibir o modal ao clicar na classe .day
 function exibirModal() {
-  // Seleciona todos os elementos com a classe .day
   document.querySelectorAll(".day").forEach((day) => {
-    // Adiciona um event listener de clique a cada elemento
     day.addEventListener("click", function () {
-      // Exibe o modal
       $("#myModal").modal("show");
     });
   });
 }
 
-// Chame a função para que ela seja executada quando a página for carregada
+// chama a função para que ela seja executada quando a página for carregada
 document.addEventListener("DOMContentLoaded", function () {
   exibirModal();
 });
@@ -160,6 +157,56 @@ document.addEventListener("DOMContentLoaded", function () {
       document
         .getElementById("deleteForm")
         .querySelector('input[name="id"]').value = id;
+    });
+  });
+});
+
+// menu tarefas
+// sort valores
+document.addEventListener("DOMContentLoaded", function () {
+  const tarefasContainer = document.getElementById("divtarefas");
+
+  function sortTarefas(tarefas, criteria) {
+    return tarefas.sort((a, b) => {
+      if (criteria === "nomeAZ") {
+        return a
+          .querySelector(".card-header")
+          .innerText.localeCompare(b.querySelector(".card-header").innerText);
+      } else if (criteria === "nomeZA") {
+        return b
+          .querySelector(".card-header")
+          .innerText.localeCompare(a.querySelector(".card-header").innerText);
+      } else if (criteria === "data") {
+        const dataA = parseDate(a.querySelector("small.card-text").innerText);
+        const dataB = parseDate(b.querySelector("small.card-text").innerText);
+        return dataB - dataA; // Ordena em ordem decrescente
+      }
+    });
+  }
+
+  // converte a string de data no formato dd/MM/yyyy em um objeto date
+  function parseDate(dateString) {
+    const parts = dateString.split("/");
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // Os meses são indexados a partir de zero
+    const year = parseInt(parts[2], 10);
+    return new Date(year, month, day);
+  }
+
+  // funcao para tarefas ordenadas
+  function renderTarefas(tarefas) {
+    tarefasContainer.innerHTML = "";
+    tarefas.forEach((tarefa) => tarefasContainer.appendChild(tarefa));
+  }
+
+  // Adiciona eventos de clique nos botões de ordenação
+  document.querySelectorAll("#divFiltro button").forEach((button) => {
+    button.addEventListener("click", () => {
+      const sortCriteria = button.getAttribute("data-sort");
+      const tarefas = Array.from(tarefasContainer.children);
+      const sortedTarefas = sortTarefas(tarefas, sortCriteria);
+
+      renderTarefas(sortedTarefas);
     });
   });
 });

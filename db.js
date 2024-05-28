@@ -1,6 +1,7 @@
 // db.js - aqui é parte de bd, td que for referente a bd, leitura, update, insert, etc..
 require("dotenv").config();
 const { MongoClient, ObjectId } = require("mongodb");
+const { format } = require("date-fns");
 
 let singleton;
 
@@ -25,10 +26,28 @@ async function insertTarefa(tarefa) {
 }
 
 // retornar tarefas do bd
-async function findTarefa() {
-  const db = await connect();
+// async function findTarefa() {
+//   const db = await connect();
 
-  return db.collection("tarefas").find().toArray();
+//   return db.collection("tarefas").find().toArray();
+// }
+
+async function findTarefa() {
+  try {
+    const db = await connect();
+    const tarefas = await db.collection("tarefas").find().toArray();
+
+    // Formatar as datas das tarefas antes de retornar
+    const tarefasFormatadas = tarefas.map((tarefa) => ({
+      ...tarefa,
+      data: format(new Date(tarefa.data), "dd/MM/yyyy"), // Formata a data
+    }));
+
+    return tarefasFormatadas;
+  } catch (error) {
+    console.error("Erro ao buscar tarefas:", error);
+    throw new Error("Erro ao buscar tarefas do banco de dados");
+  }
 }
 
 // delete tarefas do bd
@@ -42,9 +61,7 @@ async function removeTarefa(id) {
 async function updateTarefa(id, titulo, descricao, data, status) {
   const db = await connect();
 
-  return db
-    .collection("tarefas")
-    .updateOne(
+  return db.collection("tarefas").updateOne(
       { _id: new ObjectId(id) },
       { $set: { titulo, descricao, data, status } }
     );
@@ -56,5 +73,4 @@ module.exports = {
   findTarefa,
   removeTarefa,
   updateTarefa,
-  // findDias,
 };

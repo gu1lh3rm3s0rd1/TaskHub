@@ -2,20 +2,14 @@ var express = require("express");
 var router = express.Router();
 const db = require("../db"); // importa bd
 
+// GET
 router.get("/", async (req, res, next) => {
   try {
-    // Obtenha o número da página da query string, ou 1 se não estiver presente
-    // const page = req.query.page ? parseInt(req.query.page) : 1;
-    // const pageSize = 5;
-
-    // const semanas = await db.findDias(page, pageSize);
     const tarefas = await db.findTarefa();
 
     res.render("index", {
       title: "Express",
       tarefas,
-      // semanas,
-      // currentPage: page,
     });
   } catch (err) {
     res.status(500).send("Erro ao recuperar dados: " + err);

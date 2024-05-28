@@ -1,27 +1,11 @@
-/* body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-} */
-
 html {
   --body-color: #fffcff;
-
   --header-color: #d36c6c;
-
   --header-button: #92a1d1;
-
   --color-weekdays: #247ba0;
-
   --box-shadow: #cbd4c2;
-
   --hover: #e8faed;
-
   --current-day: #e8f4fa;
-
   --color-day: white;
 }
 
@@ -30,6 +14,13 @@ body {
   padding: 50px;
   /* justify-content: center; */
   background-color: var(--body-color);
+  /* font-family: 'Source Code Pro', monospace; */
+  font-size: 26px;
+  font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+  position: relative;
+  top: -3px;
+  letter-spacing: -1px;
+  height: 25px;
 }
 
 .centraliza {
@@ -37,8 +28,12 @@ body {
   justify-content: center;
 }
 
+#divFiltro button {
+  width: 50px;
+}
+
 button {
-  width: 75px;
+  /* width: 75px; */
   cursor: pointer;
   box-shadow: 0px 0px 2px gray;
   border: none;
@@ -49,10 +44,10 @@ button {
 }
 
 #header {
-  padding: 10px;
+  /* padding: 10px; */
   color: var(--header-color);
   font-size: 26px;
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
   display: flex;
   justify-content: space-between;
 }
@@ -63,6 +58,21 @@ button {
 
 #container {
   width: 770px;
+  margin-left: 25px !important;
+  margin-right: 25px !important;
+}
+
+#header > #container {
+  background: rgb(25, 25, 25);
+  z-index: 85;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+#containerTarefas {
+  padding: inherit;
+  margin-left: 25px !important;
+  margin-right: 25px !important;
 }
 
 #weekdays {
@@ -113,6 +123,55 @@ button {
 }
 
 .scrollable-div {
-  max-height: 750px; /* Defina a altura máxima */
-  overflow-y: auto; /* Adicione rolagem vertical */
+  max-height: 750px;
+  /* Defina a altura máxima */
+  overflow-y: auto;
+  /* Adicione rolagem vertical */
+}
+
+/* @media (min-width: 1024px) and (max-width: 1440px) { */
+@media (min-width: 992px) {
+  body {
+    padding: 25px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .centraliza {
+    padding-bottom: 25px;
+    height: 700px;
+  }
+
+  .day {
+    height: 85px;
+  }
+
+  /* #container, */
+  #containerTarefas {
+    height: 650px;
+  }
+
+  #divFiltro button {
+    width: 50px;
+    height: 30px;
+    justify-content: center;
+    vertical-align: top;
+    display: flex;
+  }
+
+  .pagination {
+    display: flex;
+    height: 0;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  #weekdays {
+    display: flex;
+    height: 42px;
+    align-items: center;
+    margin-bottom: 0;
+  }
 }
