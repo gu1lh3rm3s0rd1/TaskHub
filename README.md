@@ -10,4 +10,3 @@ Funcionalidades
 Pré-requisitos
 
     Node.js instalado na sua máquina.
-    Um navegador web moderno.
