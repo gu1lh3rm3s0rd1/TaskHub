@@ -62,7 +62,7 @@ button {
   margin-right: 25px !important;
 }
 
-#header > #container {
+#header>#container {
   background: rgb(25, 25, 25);
   z-index: 85;
   margin-left: 0 !important;
@@ -112,7 +112,7 @@ button {
   background-color: var(--hover);
 }
 
-.day + #currentDay {
+.day+#currentDay {
   background-color: var(--current-day);
 }
 
@@ -123,13 +123,12 @@ button {
 }
 
 .scrollable-div {
-  max-height: 750px;
-  /* Defina a altura máxima */
-  overflow-y: auto;
-  /* Adicione rolagem vertical */
+  max-height: 750px; /* Defina a altura máxima */
+  overflow-y: auto; /* Adicione rolagem vertical */
 }
 
-/* @media (min-width: 1024px) and (max-width: 1440px) { */
+/* responsividade */
+
 @media (min-width: 992px) {
   body {
     padding: 25px;
@@ -173,5 +172,54 @@ button {
     height: 42px;
     align-items: center;
     margin-bottom: 0;
+  }
+}
+
+@media (min-width: 359px) and (max-width: 1023px) {
+  body {
+    padding: 18px !important;
+  }
+
+  #containerTarefas {
+    padding: inherit;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 2rem;
+  }
+
+  .centraliza > div {
+      width: 56% !important;
+  }
+
+  #container {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .centraliza {
+    display: grid !important;
+    justify-content: initial !important;
+    width: 100% !important;
+  }
+
+  .day {
+    width: 47.99px !important;
+    padding: 5px !important;
+    height: 55px !important;
+    margin: 4px;
+  }
+
+  #weekdays div {
+    width: 100px;
+    /* padding: 0; */
+    height: 40px !important;
+    /* text-align: center; */
+    display: flex;
+    align-content: center;
+    align-items: center;
+  }
+
+  #header > #container {
+    width: 100% !important;
   }
 }
