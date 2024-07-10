@@ -54,6 +54,7 @@ button {
 
 #header button {
   background-color: var(--header-button);
+  display: contents;
 }
 
 #container {
@@ -73,6 +74,15 @@ button {
   padding: inherit;
   margin-left: 25px !important;
   margin-right: 25px !important;
+}
+
+.modal-suave .modal-content {
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0; /* Inicia com o modal transparente */
+}
+
+.modal-suave.show .modal-content {
+  opacity: 1; /* Transição para opacidade total quando o modal é exibido */
 }
 
 #weekdays {
@@ -140,7 +150,7 @@ button {
 
   .centraliza {
     padding-bottom: 25px;
-    height: 700px;
+    height: 83vh;
   }
 
   .day {

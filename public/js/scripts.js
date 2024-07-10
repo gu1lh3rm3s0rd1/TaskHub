@@ -1,21 +1,18 @@
 // variaveis globais
 let nav = 0;
 let clicked = null;
-let events = localStorage.getItem("events")
-  ? JSON.parse(localStorage.getItem("events"))
-  : [];
+let events = localStorage.getItem("events") ? JSON.parse(localStorage.getItem("events")) : [];
+
+// variavel do modal:
+const newEvent = document.getElementById('newEventModal')
+const deleteEventModal = document.getElementById('deleteEventModal')
+const backDrop = document.getElementById('modalBackDrop')
+const eventTitleInput = document.getElementById('eventTitleInput')
 
 // calendario
 const calendar = document.getElementById("calendar");
-const weekdays = [
-  "domingo",
-  "segunda-feira",
-  "terça-feira",
-  "quarta-feira",
-  "quinta-feira",
-  "sexta-feira",
-  "sábado",
-]; //array with weekdays:
+const weekdays = ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"]; //array with weekdays:
+
 
 //funções
 //função load() será chamada quando a pagina carregar:
@@ -44,11 +41,7 @@ function load() {
   const paddinDays = weekdays.indexOf(dateString.split(", ")[0]);
 
   //mostrar mês e ano:
-  document.getElementById(
-    "monthDisplay"
-  ).innerText = `${date.toLocaleDateString("pt-br", {
-    month: "long",
-  })}, ${year}`;
+  document.getElementById('monthDisplay').innerText = `${date.toLocaleDateString('pt-br',{month: 'long'})}, ${year}`;
 
   calendar.innerHTML = "";
 
@@ -69,21 +62,25 @@ function load() {
         dayS.id = "currentDay";
       }
 
-      if (eventDay) {
-        const eventDiv = document.createElement("div");
-        eventDiv.classList.add("event");
-        eventDiv.innerText = eventDay.title;
-        dayS.appendChild(eventDiv);
+      if(eventDay){
+        const eventDiv = document.createElement('div')
+        eventDiv.classList.add('event')
+        eventDiv.innerText = eventDay.title
+        dayS.appendChild(eventDiv)
+
       }
 
-      dayS.addEventListener("click", () => openModal(dayString));
+      dayS.addEventListener('click', ()=> openModal(dayString))
+
     } else {
-      dayS.classList.add("padding");
+      dayS.classList.add('padding')
+
     }
 
-    calendar.appendChild(dayS);
+    calendar.appendChild(dayS)
   }
 }
+
 
 // funcao para exibir o modal ao clicar na classe .day
 function exibirModal() {
@@ -94,10 +91,12 @@ function exibirModal() {
   });
 }
 
+
 // chama a função para que ela seja executada quando a página for carregada
 document.addEventListener("DOMContentLoaded", function () {
   exibirModal();
 });
+
 
 // botões
 function buttons() {
@@ -114,18 +113,17 @@ function buttons() {
 buttons();
 load();
 
+
 // display dos modais com botao
-document
-  .getElementById("editModal")
-  .addEventListener("shown.bs.modal", function () {
+document.getElementById("editModal").addEventListener("shown.bs.modal", function () {
     document.getElementById("editForm").style.display = "block";
   });
 
-document
-  .getElementById("deleteModal")
-  .addEventListener("shown.bs.modal", function () {
+
+document.getElementById("deleteModal").addEventListener("shown.bs.modal", function () {
     document.getElementById("deleteForm").style.display = "block";
   });
+
 
 // traz os dados da tarefa selecionada
 // edit
@@ -148,6 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+
 // delete
 document.addEventListener("DOMContentLoaded", function () {
   var deleteButtons = document.querySelectorAll(".delete-btn");
@@ -160,6 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
 
 // menu tarefas
 // sort valores
