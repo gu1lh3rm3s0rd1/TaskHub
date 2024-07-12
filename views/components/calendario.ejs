@@ -1,45 +1,47 @@
-<div id="container">
-  <div id="header">
-    <div id="container">
-      <div class="pagination" style="display: flex; height: 40px; align-items: center;">
-        <div style="font-weight: 600; margin-left: 8px; margin-right: 8px; line-height: 1; font-size: 14px;">
-          <div id="monthDisplay"></div>
+<div class="">
+  <div id="container">
+    <div id="header">
+      <div id="container">
+        <div class="pagination" style="display: flex; height: 40px; align-items: center;">
+          <div style="font-weight: 600; margin-left: 8px; margin-right: 8px; line-height: 1; font-size: 14px;">
+            <div id="monthDisplay"></div>
+          </div>
+
+          <div style="flex-grow: 1;"></div>
+
+          <div class="btn btn-primary" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 4px; height: 24px; width: 24px; padding: 0px;" aria-label="Mês anterior">
+            <button id="backButton">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1"/>
+              </svg>
+            </button>
+          </div>
+
+          <div role="button" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; display: inline-flex; align-items: center; flex-shrink: 0; white-space: nowrap; height: 24px; border-radius: 4px; font-size: 14px; line-height: 1.2; min-width: 0px; padding-left: 6px; padding-right: 6px; color: white;">
+            <div id="currentDate">Hoje</div>
+          </div>
+
+          <div class="btn btn-primary" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 4px; height: 24px; width: 24px; padding: 0px; margin-right: 8px;" aria-label="Próximo mês">
+            <button id="nextButton">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1"/>
+              </svg>
+            </button>
+          </div>
         </div>
 
-        <div style="flex-grow: 1;"></div>
-
-        <div class="btn btn-primary" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 4px; height: 24px; width: 24px; padding: 0px;" aria-label="Mês anterior">
-          <button id="backButton">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
-              <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1"/>
-            </svg>
-          </button>
+        <div id="weekdays" style="display: flex; align-items: center;">
+          <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: white;">Domingo</div>
+          <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: white;">Segunda-feira</div>
+          <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: white;">Terça-feira</div>
+          <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: white;">Quarta-feira</div>
+          <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: white;">Quinta-feira</div>
+          <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: white;">Sexta-feira</div>
+          <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: white;">Sábado</div>
         </div>
-
-        <div role="button" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; display: inline-flex; align-items: center; flex-shrink: 0; white-space: nowrap; height: 24px; border-radius: 4px; font-size: 14px; line-height: 1.2; min-width: 0px; padding-left: 6px; padding-right: 6px; color: rgba(255, 255, 255, 0.81);">
-          <div id="monthDisplay"></div>
-        </div>
-
-        <div class="btn btn-primary" style="user-select: none; transition: background 20ms ease-in; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 4px; height: 24px; width: 24px; padding: 0px;" aria-label="Próximo mês">
-          <button id="nextButton">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
-              <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <div id="weekdays" style="display: flex; align-items: center;">
-        <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: white;">Domingo</div>
-        <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: white;">Segunda-feira</div>
-        <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: white;">Terça-feira</div>
-        <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: white;">Quarta-feira</div>
-        <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: white;">Quinta-feira</div>
-        <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: white;">Sexta-feira</div>
-        <div style="flex-grow: 1; flex-basis: 0px; text-align: center; font-size: 12px; height: 24px; color: white;">Sábado</div>
       </div>
     </div>
-  </div>
 
-  <div id="calendar"></div>
+    <div id="calendar"></div>
+  </div>
 </div>

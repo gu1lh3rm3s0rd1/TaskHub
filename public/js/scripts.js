@@ -82,6 +82,13 @@ function load() {
 }
 
 
+// botao hoje
+document.getElementById("currentDate").addEventListener("click", function() {
+  nav = 0; // Reset navigation to current month
+  load(); // Call the load function to refresh the calendar
+});
+
+
 // funcao para exibir o modal ao clicar na classe .day
 function exibirModal() {
   document.querySelectorAll(".day").forEach((day) => {

@@ -20,16 +20,20 @@ body {
   position: relative;
   top: -3px;
   letter-spacing: -1px;
-  height: 25px;
+  height: 100vh;
 }
 
 .centraliza {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 #divFiltro button {
   width: 50px;
+  height: 30px;
+  justify-content: center;
+  vertical-align: top;
+  display: flex;
 }
 
 button {
@@ -50,6 +54,8 @@ button {
   /* font-family: sans-serif; */
   display: flex;
   justify-content: space-between;
+  background: #282828;
+  border-radius: 10px;
 }
 
 #header button {
@@ -59,12 +65,12 @@ button {
 
 #container {
   width: 770px;
-  margin-left: 25px !important;
-  margin-right: 25px !important;
+  /* margin-left: 25px !important;
+  margin-right: 25px !important; */
 }
 
 #header>#container {
-  background: rgb(25, 25, 25);
+  /* background: rgb(25, 25, 25); */
   z-index: 85;
   margin-left: 0 !important;
   margin-right: 0 !important;
@@ -72,17 +78,18 @@ button {
 
 #containerTarefas {
   padding: inherit;
-  margin-left: 25px !important;
-  margin-right: 25px !important;
+  /* margin-left: 25px !important;
+  margin-right: 25px !important; */
+  /* width: 770px !important; */
 }
 
 .modal-suave .modal-content {
   transition: opacity 0.5s ease-in-out;
-  opacity: 0; /* Inicia com o modal transparente */
+  opacity: 0;
 }
 
 .modal-suave.show .modal-content {
-  opacity: 1; /* Transição para opacidade total quando o modal é exibido */
+  opacity: 1;
 }
 
 #weekdays {
@@ -106,7 +113,7 @@ button {
 .day {
   width: 100px;
   padding: 10px;
-  height: 100px;
+  height: 100px !important;
   cursor: pointer;
   box-sizing: border-box;
   background-color: var(--color-day);
@@ -133,41 +140,30 @@ button {
 }
 
 .scrollable-div {
-  max-height: 750px; /* Defina a altura máxima */
-  overflow-y: auto; /* Adicione rolagem vertical */
+  max-height: 750px;
+  overflow-y: auto;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+  color: var(--bs-card-color);
+  border-bottom: 1px solid #d7d7d7;
+}
+
+.card {
+  --bs-card-border-color: none !important;
 }
 
 /* responsividade */
 
 @media (min-width: 992px) {
-  body {
-    padding: 25px;
-  }
-
   h1 {
     font-size: 1.5rem;
   }
 
-  .centraliza {
-    padding-bottom: 25px;
-    height: 83vh;
-  }
-
   .day {
-    height: 85px;
-  }
-
-  /* #container, */
-  #containerTarefas {
-    height: 650px;
-  }
-
-  #divFiltro button {
-    width: 50px;
-    height: 30px;
-    justify-content: center;
-    vertical-align: top;
-    display: flex;
+    height: 80px !important;
   }
 
   .pagination {
@@ -194,16 +190,22 @@ button {
     padding: inherit;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    margin-top: 2rem;
   }
 
-  .centraliza > div {
-      width: 56% !important;
+  .container {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .centraliza>div {
+    width: 56% !important;
   }
 
   #container {
     margin-left: 0 !important;
     margin-right: 0 !important;
+    margin-bottom: 2rem;
+    width: auto !important;
   }
 
   .centraliza {
@@ -229,7 +231,11 @@ button {
     align-items: center;
   }
 
-  #header > #container {
+  #header>#container {
+    width: 100% !important;
+  }
+
+  .w-75 {
     width: 100% !important;
   }
 }
