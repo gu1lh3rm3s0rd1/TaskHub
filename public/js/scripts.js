@@ -1,25 +1,40 @@
 // variaveis globais
 let nav = 0;
 let clicked = null;
-let events = localStorage.getItem("events") ? JSON.parse(localStorage.getItem("events")) : [];
+
 
 // variavel do modal:
-const newEvent = document.getElementById('newEventModal')
-const deleteEventModal = document.getElementById('deleteEventModal')
-const backDrop = document.getElementById('modalBackDrop')
-const eventTitleInput = document.getElementById('eventTitleInput')
+const newEvent = document.getElementById('newEventModal');
+const deleteEventModal = document.getElementById('deleteEventModal');
+const backDrop = document.getElementById('modalBackDrop');
+const eventTitleInput = document.getElementById('eventTitleInput');
+
 
 // calendario
 const calendar = document.getElementById("calendar");
-const weekdays = ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"]; //array with weekdays:
+const weekdays = ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"];
+
+
+// traz as tarefas do banco de dados
+async function fetchTarefas() {
+  try {
+    const response = await fetch('/tarefas');
+    const tarefas = await response.json();
+    console.log('Tarefas:', tarefas);
+    return tarefas;
+  } catch (error) {
+    console.error('Erro ao buscar tarefas:', error);
+    return [];
+  }
+}
 
 
 //funções
 //função load() será chamada quando a pagina carregar:
-function load() {
+async function load() {
+  const tarefas = await fetchTarefas();
   const date = new Date();
 
-  //mudar titulo do mês:
   if (nav !== 0) {
     date.setMonth(new Date().getMonth() + nav);
   }
@@ -40,44 +55,49 @@ function load() {
 
   const paddinDays = weekdays.indexOf(dateString.split(", ")[0]);
 
-  //mostrar mês e ano:
-  document.getElementById('monthDisplay').innerText = `${date.toLocaleDateString('pt-br',{month: 'long'})}, ${year}`;
+  document.getElementById('monthDisplay').innerText = `${date.toLocaleDateString('pt-br', { month: 'long' })}, ${year}`;
+
+  console.log('Data atual:', date);
+  console.log('Número de dias no mês:', daysMonth);
+  console.log('Primeiro dia do mês:', firstDayMonth);
 
   calendar.innerHTML = "";
 
-  // criando uma div com os dias:
   for (let i = 1; i <= paddinDays + daysMonth; i++) {
     const dayS = document.createElement("div");
     dayS.classList.add("day");
 
-    const dayString = `${month + 1}/${i - paddinDays}/${year}`;
+    const dayString = `${year}-${String(month + 1).padStart(2, '0')}-${String(i - paddinDays).padStart(2, '0')}`;
 
-    //condicional para criar os dias de um mês:
     if (i > paddinDays) {
       dayS.innerText = i - paddinDays;
-
-      const eventDay = events.find((event) => event.date === dayString);
 
       if (i - paddinDays === day && nav === 0) {
         dayS.id = "currentDay";
       }
 
-      if(eventDay){
-        const eventDiv = document.createElement('div')
-        eventDiv.classList.add('event')
-        eventDiv.innerText = eventDay.title
-        dayS.appendChild(eventDiv)
+      const taskDate = `${String(i - paddinDays).padStart(2, '0')}/${String(month + 1).padStart(2, '0')}/${year}`;
+      console.log('Data da tarefa:', taskDate);
 
+      const [dayy, monthy, yeary] = taskDate.split('/');
+      // Reorganizar os componentes e usar hífen como separador
+      const formattedDate = `${yeary}-${monthy}-${dayy}`;
+      console.log('Data da tarefaa:', formattedDate);
+
+      if (tarefas.some(tarefa => tarefa.data === formattedDate)) {
+        const eventDiv = document.createElement("div");
+        eventDiv.classList.add("event");
+        dayS.appendChild(eventDiv);
       }
 
-      dayS.addEventListener('click', ()=> openModal(dayString))
-
+      dayS.setAttribute("data-date", dayString);
+      dayS.addEventListener('click', () => exibirModal(dayString));
+      console.log('Dia adicionado:', dayString);
     } else {
-      dayS.classList.add('padding')
-
+      dayS.classList.add('padding');
     }
 
-    calendar.appendChild(dayS)
+    calendar.appendChild(dayS);
   }
 }
 
@@ -85,7 +105,7 @@ function load() {
 // botao hoje
 document.getElementById("currentDate").addEventListener("click", function() {
   nav = 0; // Reset navigation to current month
-  load(); // Call the load function to refresh the calendar
+  load();
 });
 
 
@@ -93,6 +113,9 @@ document.getElementById("currentDate").addEventListener("click", function() {
 function exibirModal() {
   document.querySelectorAll(".day").forEach((day) => {
     day.addEventListener("click", function () {
+      const dataClicada = this.getAttribute("data-date");
+      console.log('Data clicada:', dataClicada);
+      document.getElementById("data").value = dataClicada;
       $("#myModal").modal("show");
     });
   });
@@ -101,6 +124,8 @@ function exibirModal() {
 
 // chama a função para que ela seja executada quando a página for carregada
 document.addEventListener("DOMContentLoaded", function () {
+  buttons();
+  load();
   exibirModal();
 });
 
@@ -124,12 +149,12 @@ load();
 // display dos modais com botao
 document.getElementById("editModal").addEventListener("shown.bs.modal", function () {
     document.getElementById("editForm").style.display = "block";
-  });
+});
 
 
 document.getElementById("deleteModal").addEventListener("shown.bs.modal", function () {
     document.getElementById("deleteForm").style.display = "block";
-  });
+});
 
 
 // traz os dados da tarefa selecionada

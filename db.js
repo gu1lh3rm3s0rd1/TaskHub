@@ -5,6 +5,7 @@ const { format } = require("date-fns");
 
 let singleton;
 
+
 // toda comunicacao com bd node é assincrona, devido a questao de performnace
 async function connect() {
   if (singleton) return singleton;
@@ -18,6 +19,7 @@ async function connect() {
   return singleton;
 }
 
+
 // add uma nova tarefa ao bd
 async function insertTarefa(tarefa) {
   const db = await connect();
@@ -25,30 +27,25 @@ async function insertTarefa(tarefa) {
   return db.collection("tarefas").insertOne(tarefa);
 }
 
+
 // retornar tarefas do bd
-// async function findTarefa() {
-//   const db = await connect();
-
-//   return db.collection("tarefas").find().toArray();
-// }
-
 async function findTarefa() {
   try {
     const db = await connect();
     const tarefas = await db.collection("tarefas").find().toArray();
 
-    // Formatar as datas das tarefas antes de retornar
-    const tarefasFormatadas = tarefas.map((tarefa) => ({
-      ...tarefa,
-      data: format(new Date(tarefa.data), "dd/MM/yyyy"), // Formata a data
-    }));
+    // const tarefasFormatadas = tarefas.map((tarefa) => ({
+    //   ...tarefa,
+    //   data: format(new Date(tarefa.data), "dd/MM/yyyy"),
+    // }));
 
-    return tarefasFormatadas;
+    return tarefas;
   } catch (error) {
     console.error("Erro ao buscar tarefas:", error);
     throw new Error("Erro ao buscar tarefas do banco de dados");
   }
 }
+
 
 // delete tarefas do bd
 async function removeTarefa(id) {
@@ -56,6 +53,7 @@ async function removeTarefa(id) {
 
   return db.collection("tarefas").deleteOne({ _id: new ObjectId(id) });
 }
+
 
 // update tarefa do bd
 async function updateTarefa(id, titulo, descricao, data, status) {
@@ -66,6 +64,7 @@ async function updateTarefa(id, titulo, descricao, data, status) {
       { $set: { titulo, descricao, data, status } }
     );
 }
+
 
 // informa a funcao para a aplicacao
 module.exports = {

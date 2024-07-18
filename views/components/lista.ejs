@@ -42,7 +42,13 @@
         <div class="card-header fs-5"><%= tarefa.titulo %></div>
         <div class="card-body">
           <p class="card-text mb-5"><%= tarefa.descricao %></p>
-          <small class="card-text"><%= tarefa.data %></small><br>
+          <small class="card-text">
+            <% 
+            var dataParts = tarefa.data.split('-'); // Assume formato 'YYYY-MM-DD'
+            var dataFormatada = dataParts[2] + '/' + dataParts[1] + '/' + dataParts[0]; // Formato 'DD/MM/YYYY'
+            %>
+            <%= dataFormatada %>
+          </small><br>
           <% if (tarefa.status === 'concluido') { %>
           <small class="card-text badge text-bg-success"><%= tarefa.status %></small><br>
           <% } else { %>

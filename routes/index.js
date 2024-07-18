@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const db = require("../db"); // importa bd
 
+
 // GET
 router.get("/", async (req, res, next) => {
   try {
@@ -16,6 +17,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+
 // POST
 router.post("/save", async (req, res) => {
   // req resgata informaçoes do html
@@ -26,6 +28,7 @@ router.post("/save", async (req, res) => {
   // retornar informaçoes (resposta do server ao formulario)
   res.redirect("/");
 });
+
 
 // DELETE
 // route.delete("/:id", controller.delete);
@@ -38,6 +41,7 @@ router.post("/delete", async (req, res) => {
   // retornar informaçoes (resposta do server ao formulario)
   res.redirect("/");
 });
+
 
 // EDIT
 // route.put("/:id", controller.update);
@@ -53,6 +57,18 @@ router.post("/edit", async (req, res) => {
   console.log(result);
   // retornar informaçoes (resposta do server ao formulario)
   res.redirect("/");
+});
+
+
+// API
+// Rota para resgatar todas as tarefas
+router.get('/tarefas', async (req, res) => {
+  try {
+    const tarefas = await db.findTarefa();
+    res.json(tarefas);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 });
 
 module.exports = router;
