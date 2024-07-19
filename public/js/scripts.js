@@ -20,7 +20,8 @@ async function fetchTarefas() {
   try {
     const response = await fetch('/tarefas');
     const tarefas = await response.json();
-    console.log('Tarefas:', tarefas);
+    // console.log('Tarefas:', tarefas);
+
     return tarefas;
   } catch (error) {
     console.error('Erro ao buscar tarefas:', error);
@@ -57,9 +58,9 @@ async function load() {
 
   document.getElementById('monthDisplay').innerText = `${date.toLocaleDateString('pt-br', { month: 'long' })}, ${year}`;
 
-  console.log('Data atual:', date);
+  // console.log('Data atual:', date);
   console.log('Número de dias no mês:', daysMonth);
-  console.log('Primeiro dia do mês:', firstDayMonth);
+  // console.log('Primeiro dia do mês:', firstDayMonth);
 
   calendar.innerHTML = "";
 
@@ -77,10 +78,7 @@ async function load() {
       }
 
       const taskDate = `${String(i - paddinDays).padStart(2, '0')}/${String(month + 1).padStart(2, '0')}/${year}`;
-      console.log('Data da tarefa:', taskDate);
-
       const [dayy, monthy, yeary] = taskDate.split('/');
-      // Reorganizar os componentes e usar hífen como separador
       const formattedDate = `${yeary}-${monthy}-${dayy}`;
       console.log('Data da tarefaa:', formattedDate);
 
@@ -92,7 +90,7 @@ async function load() {
 
       dayS.setAttribute("data-date", dayString);
       dayS.addEventListener('click', () => exibirModal(dayString));
-      console.log('Dia adicionado:', dayString);
+      // console.log('Dia adicionado:', dayString);
     } else {
       dayS.classList.add('padding');
     }
