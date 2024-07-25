@@ -1,7 +1,7 @@
 // db.js - aqui é parte de bd, td que for referente a bd, leitura, update, insert, etc..
 require("dotenv").config();
 const { MongoClient, ObjectId } = require("mongodb");
-const { format } = require("date-fns");
+// const { format } = require("date-fns");
 
 let singleton;
 
@@ -11,11 +11,22 @@ async function connect() {
   if (singleton) return singleton;
 
   // conexao com o bd mongo
-  const client = new MongoClient(process.env.MONGO_HOST);
-  await client.connect();
+  const client = new MongoClient(process.env.MONGO_HOST, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 10000
+  });
 
-  // informa qual database
-  singleton = client.db(process.env.MONGO_DATABASE);
+  try {
+    await client.connect();
+    // informa qual database
+    singleton = client.db(process.env.MONGO_DATABASE);
+    console.log('Conectado ao MongoDB');
+  } catch (err) {
+    console.error('Erro ao conectar ao MongoDB:', err);
+    throw err;
+  }
+
   return singleton;
 }
 
@@ -68,8 +79,10 @@ async function updateTarefa(id, titulo, descricao, data, status) {
 
 // informa a funcao para a aplicacao
 module.exports = {
+  connect, 
+  ObjectId,
   insertTarefa,
   findTarefa,
   removeTarefa,
-  updateTarefa,
+  updateTarefa
 };

@@ -43,10 +43,12 @@ async function load() {
   const day = date.getDate();
   const month = date.getMonth();
   const year = date.getFullYear();
+  console.log(`Carregando mês: ${month + 1}, Ano: ${year}`);
 
   const daysMonth = new Date(year, month + 1, 0).getDate();
-  const firstDayMonth = new Date(year, month, 1);
+  console.log(`Dias no mês: ${daysMonth}`);
 
+  const firstDayMonth = new Date(year, month, 1);
   const dateString = firstDayMonth.toLocaleDateString("pt-br", {
     weekday: "long",
     year: "numeric",
@@ -54,33 +56,30 @@ async function load() {
     day: "numeric",
   });
 
-  const paddinDays = weekdays.indexOf(dateString.split(", ")[0]);
+  const weekdays = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
+  const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
+  console.log(`Padding days: ${paddingDays}`);
 
   document.getElementById('monthDisplay').innerText = `${date.toLocaleDateString('pt-br', { month: 'long' })}, ${year}`;
-
-  // console.log('Data atual:', date);
-  console.log('Número de dias no mês:', daysMonth);
-  // console.log('Primeiro dia do mês:', firstDayMonth);
-
+  
   calendar.innerHTML = "";
 
-  for (let i = 1; i <= paddinDays + daysMonth; i++) {
+  for (let i = 1; i <= paddingDays + daysMonth; i++) {
     const dayS = document.createElement("div");
     dayS.classList.add("day");
 
-    const dayString = `${year}-${String(month + 1).padStart(2, '0')}-${String(i - paddinDays).padStart(2, '0')}`;
+    const dayString = `${year}-${String(month + 1).padStart(2, '0')}-${String(i - paddingDays).padStart(2, '0')}`;
 
-    if (i > paddinDays) {
-      dayS.innerText = i - paddinDays;
+    if (i > paddingDays) {
+      dayS.innerText = i - paddingDays;
 
-      if (i - paddinDays === day && nav === 0) {
+      if (i - paddingDays === day && nav === 0) {
         dayS.id = "currentDay";
       }
 
-      const taskDate = `${String(i - paddinDays).padStart(2, '0')}/${String(month + 1).padStart(2, '0')}/${year}`;
+      const taskDate = `${String(i - paddingDays).padStart(2, '0')}/${String(month + 1).padStart(2, '0')}/${year}`;
       const [dayy, monthy, yeary] = taskDate.split('/');
       const formattedDate = `${yeary}-${monthy}-${dayy}`;
-      console.log('Data da tarefaa:', formattedDate);
 
       if (tarefas.some(tarefa => tarefa.data === formattedDate)) {
         const eventDiv = document.createElement("div");
@@ -90,7 +89,6 @@ async function load() {
 
       dayS.setAttribute("data-date", dayString);
       dayS.addEventListener('click', () => exibirModal(dayString));
-      // console.log('Dia adicionado:', dayString);
     } else {
       dayS.classList.add('padding');
     }
@@ -117,6 +115,14 @@ function exibirModal() {
       $("#myModal").modal("show");
     });
   });
+
+  const novaTarefaLink = document.querySelector(".dropdown-item[href='#']");
+  if (novaTarefaLink) {
+    novaTarefaLink.addEventListener("click", function (event) {
+      event.preventDefault();
+      $("#myModal").modal("show");
+    });
+  }
 }
 
 
