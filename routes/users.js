@@ -4,14 +4,22 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const router = express.Router();
+const db = require("../db"); // importa bd
+
 
 // JSON response
 // router.use(express.json());
 
 router.get('/', async (req, res) => {
   try {
-    const users = await User.find(); // Retrieve all users from the collection
-    res.render('index', { users }); // Pass the users to the index view
+    const user = await User.find();
+    const tarefas = await db.findTarefa();
+
+    res.render('index', { 
+      tarefas,
+      user,
+      title: "Express"
+    });
 
   } catch (err) {
     res.status(500).send('Error retrieving users');
@@ -149,13 +157,13 @@ router.get("/user/:id", checkToken, async (req, res) => {
 });
 
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
-  console.log('Connected to MongoDB');
-}).catch((err) => {
-  console.error('Error connecting to MongoDB:', err);
-});
+// mongoose.connect(process.env.MONGODB_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// }).then(() => {
+//   console.log('Connected to MongoDB');
+// }).catch((err) => {
+//   console.error('Error connecting to MongoDB:', err);
+// });
 
 module.exports = router;
