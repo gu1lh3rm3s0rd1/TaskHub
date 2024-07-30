@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="public/images/icon.png" type="image/x-icon">
+    <title>Login - Entrar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <style>
+    .background{
+      background-color: #f8f8f8;
+    }
+    .btn-login{
+      background-color: #e4e4e4;
+      border: none;
+      border-radius: 0.3rem;
+      font-size: 1.2rem;
+      padding: 10px;
+      transition: all 0.2s ease-in-out;
+    }
+    .btn-login:hover{
+      background-color: #f7f7f7;
+      border: none;
+      border-radius: 0.3rem;
+      font-size: 1.2rem;
+      padding: 10px;
+      transition: all 0.2s ease-in-out;
+    }
+    .btn-create{
+      background-color: #1b2333;
+      color: #ffffff;
+      border: none;
+      border-radius: 0.3rem;
+      font-size: 1.2rem;
+      padding: 10px;
+      transition: all 0.2s ease-in-out;
+    }
+    .btn-create:hover{
+      background-color: #343d4e;
+      color: #ffffff;
+      border: none;
+      border-radius: 0.3rem;
+      font-size: 1.2rem;
+      padding: 10px;
+      transition: all 0.2s ease-in-out;
+    }
+    .text{
+      color: #2c2c2c;
+    }
+    .subtext{
+      color: #4d4d4d;
+    }
+  </style>
+  <body class="background">
+    
+<main>
+
+  <div class="px-4 pt-5 text-center">
+    <img class="d-block mx-auto mb-2" src="public/images/icon.png" alt="" width="72" height="72">
+    <h1 class="display-5 fw-bold text">TaskHub</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4 subtext">Suas tarefas mais organizadas</p>
+    </div>
+  </div>
+
+  <div class="container col-xl-10 col-xxl-8 px-4 pb-5 pt-3">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 mb-3 text">Já possui um cadastro? Faça seu login</h1>
+        <p class="col-lg-10 fs-4 subtext">TaskHub é um aplicativo inovador projetado para ajudar você a organizar e gerenciar suas tarefas diárias, mensais e horários. Nosso objetivo é simplificar sua vida, garantindo que você nunca perca uma tarefa importante. </p>
+      </div>
+      <div class="col-md-10 mx-auto rounded col-lg-5">
+        <form class="p-4 p-md-5 rounded-3 bg-white">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+          <div class="checkbox mb-3">
+            <label class="text">
+              <input type="checkbox" value="remember-me"> Lembrar meu login
+            </label>
+          </div>
+          <button class="w-100 btn-login" type="submit">Fazer login</button>
+          <button class="mt-3 w-100 btn-create" type="submit">Criar conta</button>
+          <hr class="my-4">
+          <small class="subtext">Confira suas tarefas para hoje! </small>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+</main>
+
+  </body>
+</html>
