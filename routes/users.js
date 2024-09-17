@@ -10,22 +10,6 @@ const db = require("../db"); // importa bd
 // JSON response
 // router.use(express.json());
 
-router.get('/', async (req, res) => {
-  try {
-    const user = await User.find();
-    const tarefas = await db.findTarefa();
-
-    res.render('index', { 
-      tarefas,
-      user,
-      title: "Express"
-    });
-
-  } catch (err) {
-    res.status(500).send('Error retrieving users');
-  }
-});
-
 
 // users
 router.get('/users', async (req, res) => {
@@ -68,6 +52,7 @@ router.post('/auth/register', async (req, res) => {
   try {
     await user.save();
     res.json(user).send('Usuário registrado com sucesso');
+    res.redirect('/index');
 
   } catch (error) {
     console.error(error);
@@ -115,7 +100,19 @@ router.post("/auth/login", async (req, res) => {
       secret
     );
 
-    res.status(200).json({ msg: "Autenticação realizada com sucesso!", token });
+    const tarefas = await db.findTarefa();
+
+    // Render the index view upon successful authentication
+    // res.render('index', 
+    //   { 
+    //     msg: "Autenticação realizada com sucesso!", 
+    //     token,
+    //     title: "Express",
+    //     tarefas,
+    //     userId: user._id,
+    //     user // Pass the user object to the view
+    //   });
+      res.status(200).json({ token, user, tarefas, msg: "Autenticação realizada com sucesso!" });
   } catch (error) {
     console.error('Error during login:', error);
     res.status(500).json({ msg: "Erro interno do servidor" });

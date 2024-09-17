@@ -7,13 +7,13 @@ const User = require('../models/user');
 // GET
 router.get("/", async (req, res, next) => {
   try {
-    const tarefas = await db.findTarefa();
-    const users = await User.find();
+    // const tarefas = await db.findTarefa();
+    // const users = await User.find();
 
-    res.render("index", {
+    res.render("components/landing", {
       title: "Express",
-      tarefas,
-      user: users.length > 0 ? users[0] : null
+      // tarefas,
+      // user: users.length > 0 ? users[0] : null
     });
   } catch (err) {
     res.status(500).send("Erro ao recuperar dados: " + err);
@@ -21,8 +21,44 @@ router.get("/", async (req, res, next) => {
 });
 
 
+// router.get("/welcome", async (req, res, next) => {
+//   try {
+//     res.render("components/landing");
+//   } catch (err) {
+//     res.status(500).send("Erro ao recuperar dados: " + err);
+//   }
+// });
+
+
+router.get("/register", (req, res) => {
+  try {
+    res.render("components/user/register", {
+      title: "Express"
+    }); 
+  } catch (err) {
+    res.status(500).send("Erro ao recuperar dados: " + err);
+  }
+});
+
+
+router.get("/users/auth/login", async (req, res) => {
+  try {
+    const tarefas = await db.findTarefa();
+    const users = await User.find();
+
+    res.render("index", {
+      title: "Express",
+      tarefas,
+      user: users.length > 0 ? users[0] : null
+    }); 
+  } catch (err) {
+    res.status(500).send("Erro ao recuperar dados: " + err);
+  }
+});
+
+
 // POST
-router.post("/save", async (req, res) => {
+router.post("/users/auth/save", async (req, res) => {
   const { titulo, descricao, data, status, userId } = req.body;
 
   // Verifique se o usuário existe
@@ -42,12 +78,12 @@ router.post("/save", async (req, res) => {
 
   const result = await db.insertTarefa(tarefa);
   console.log(result);
-  res.redirect("/");
+  res.redirect("/users/auth/login");
 });
 
 
 // DELETE
-router.post("/delete", async (req, res) => {
+router.post("/users/auth/delete", async (req, res) => {
   const id = req.body.id;
   const result = await db.removeTarefa(id);
   console.log(result);
@@ -56,7 +92,7 @@ router.post("/delete", async (req, res) => {
 
 
 // EDIT
-router.post("/edit", async (req, res) => {
+router.post("/users/auth/edit", async (req, res) => {
   const { id, titulo, descricao, data, status, userId } = req.body;
 
   // Verifique se o usuário existe
